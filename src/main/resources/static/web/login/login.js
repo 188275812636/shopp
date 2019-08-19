@@ -2,7 +2,7 @@ function login() {
     var username = $("#username").val();
     var password = $("#password").val();
     $.ajax({
-        url: "/loginIn.c",
+        url: "/loginIn.do",
         data: {"username": username,"password":password},
         type: "post",
         timeout: 3000,

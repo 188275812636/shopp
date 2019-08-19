@@ -4,17 +4,17 @@
     <link type="text/css" rel="stylesheet" th:href="@{/web/login/login.css}"/>
     <script type="text/javascript" th:src="@{/web/login/login.js}"></script>
 </head>
-<body>
-    <form th:action="@{/loginIn.c}" method="post" onsubmit="login()">
+<body style="background-image: url('/images/common/index.jpg'); background-repeat:no-repeat;background-size: 100%;">
+    <form align="center" th:action="@{/loginIn.do}" method="post" onsubmit="login()">
         <div>
-            <p>输入账号</p>
-            <input id="username" placeholder="请输入账号"/>
+            输入账号:<input id="username" placeholder="请输入账号"/>
         </div>
         <div>
-            <p>输入密码</p>
-            <input id="password" type="password" placeholder="请输入密码"/>
+            输入密码:<input id="password" type="password" placeholder="请输入密码"/>
         </div>
         <button type="submit">登录</button>
     </form>
 </body>
+
+<div th:replace="common/foot"></div>
 </html>

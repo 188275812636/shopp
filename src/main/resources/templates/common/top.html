@@ -1,0 +1,14 @@
+<div style="background-image: url('/images/common/index.jpg') ;height: 100px; width: 100%; top: 0;left: 0;z-index: -1;">
+    <div align="right">
+        欢迎：<span style="text-align: right" th:text="${#request.getSession().getAttribute('user')}"></span>！！！
+    </div>
+    <table width="100%">
+        <tr>
+            <td width="20%">首页</td>
+            <td width="20%">精品家居</td>
+            <td width="20%">潮流服饰</td>
+            <td width="20%">新鲜水果</td>
+            <td width="20%">数码电子</td>
+        </tr>
+    </table>
+</div>
