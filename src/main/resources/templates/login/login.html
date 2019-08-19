@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org" th:with="title='head'">
+<head th:replace="common/head :: common_header(~{::link},~{::script})">
+    <link type="text/css" rel="stylesheet" th:href="@{/web/login/login.css}"/>
+    <script type="text/javascript" th:src="@{/web/login/login.js}"></script>
+</head>
+<body>
+    <form th:action="@{/loginIn.c}" method="post" onsubmit="login()">
+        <div>
+            <p>输入账号</p>
+            <input id="username" placeholder="请输入账号"/>
+        </div>
+        <div>
+            <p>输入密码</p>
+            <input id="password" type="password" placeholder="请输入密码"/>
+        </div>
+        <button type="submit">登录</button>
+    </form>
+</body>
+</html>
