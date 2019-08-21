@@ -22,7 +22,13 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping(value = {"/", "/login.do"})
-    public ModelAndView login() {
+    public ModelAndView login(HttpServletRequest request) {
+        Object object = request.getSession().getAttribute("user");
+        if(object!=null){
+            Map map = new HashMap();
+            map.put("user",object);
+            return new ModelAndView("redirect:/home.do",map);
+        }
         return new ModelAndView("login/login");
     }
 
@@ -32,6 +38,11 @@ public class LoginController {
         loginService.queryTipsForCore(request);
 
         return new ModelAndView("redirect:/home.do",map);
+    }
+    @RequestMapping(value = {"/logOut.do"})
+    public ModelAndView logOut(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        return new ModelAndView("redirect:/home.do");
     }
 
 }

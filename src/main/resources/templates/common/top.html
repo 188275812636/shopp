@@ -1,6 +1,27 @@
-<div style="background-image: url('/images/common/index.jpg') ;height: 100px; width: 100%; top: 0;left: 0;z-index: -1;">
+<script>
+    function logout() {
+        $.ajax({
+            url: "/logOut.do",
+            data: '',
+            type: "post",
+            timeout: 3000,
+            dataType: "json",
+            async: false,
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            },
+            success: function (responseText, textStatus, XMLHttpRequest) {
+                location.reload();
+            }
+        });
+    }
+</script>
+<div style="background-image: url('/images/common/top.jpg') ;height: 100px; width: 100%; top: 0;left: 0;z-index: -1;">
     <div align="right">
         欢迎：<span style="text-align: right" th:text="${#request.getSession().getAttribute('user')}"></span>！！！
+    </div>
+    <div align="right">
+        <input type="button" value="注销登录" onclick="logout()">
     </div>
     <table width="100%">
         <tr>
