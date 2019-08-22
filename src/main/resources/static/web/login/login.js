@@ -21,9 +21,13 @@ function login() {
         dataType: "json",
         async: false,
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            location.reload();
+            toastr.error('链接超时！');
         },
         success: function (responseText, textStatus, XMLHttpRequest) {
+            if(!responseText.repData.data.flag){
+                toastr.info('用户名或密码不正确！');
+                return;
+            }
             location.reload();
         }
     });

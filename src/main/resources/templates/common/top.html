@@ -19,9 +19,10 @@
 <div style="background-image: url('/images/common/top.jpg') ;height: 100px; width: 100%; top: 0;left: 0;z-index: -1;">
     <div align="right">
         欢迎：<span style="text-align: right" th:text="${#request.getSession().getAttribute('user')}"></span>！！！
+        <span onclick="logout()"><a href="">退出</a></span>
     </div>
     <div align="right">
-        <input type="button" value="注销登录" onclick="logout()">
+
     </div>
     <table width="100%">
         <tr>

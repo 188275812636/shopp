@@ -2,9 +2,8 @@ function register() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var password1 = document.getElementById("password1").value;
-    var usertype = document.getElementById("usertype").value;
     var truename = document.getElementById("truename").value;
-    if(username==""||password==""||password1==""||usertype==""){
+    if(username==""||password==""||password1==""){
         toastr.warning('请填写基本信息！');
         return;
     }
@@ -13,7 +12,7 @@ function register() {
     }
     $.ajax({
         url: "/to_register.do",
-        data: {"username": username,"password":password,"usertype":usertype,"truename":truename},
+        data: {"username": username,"password":password,"truename":truename},
         type: "post",
         timeout: 3000,
         dataType: "json",

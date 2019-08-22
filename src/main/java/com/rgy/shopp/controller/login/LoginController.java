@@ -1,9 +1,11 @@
 package com.rgy.shopp.controller.login;
 
 import com.rgy.shopp.service.login.LoginService;
+import com.rgy.shopp.util.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,12 +34,15 @@ public class LoginController {
         return new ModelAndView("login/login");
     }
 
+    @ResponseBody
     @RequestMapping(value = {"/loginIn.do"})
-    public ModelAndView loginIn(HttpServletRequest request){
+    public JsonResponse loginIn(HttpServletRequest request){
+        JsonResponse jsonResponse = new JsonResponse();
         Map<String, Object> map = new HashMap<>();
         Boolean flag = loginService.queryTipsForCore(request);
         map.put("flag",flag);
-        return new ModelAndView("redirect:/home.do",map);
+        jsonResponse.getRepData().put("data",map);
+        return jsonResponse;
     }
     @RequestMapping(value = {"/logOut.do"})
     public ModelAndView logOut(HttpServletRequest request){
