@@ -1,14 +1,5 @@
 $(function () {
-    $('#win_register').window({
-        width: 1000,
-        modal: true,
-        closed: true,
-        title: '详情',
-        top: ($(window).height() - 550) * 0.5,
-        closable: true,
-        resizable: false,
-        iconCls: 'icon-save'
-    });
+
 });
 function login() {
     var username = $("#username").val();
@@ -38,5 +29,5 @@ function login() {
     });
 }
 function open_register() {
-    $('#win_register').window('open');
+    location.href="register.do";
 }
