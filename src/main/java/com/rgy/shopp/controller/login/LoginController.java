@@ -35,8 +35,8 @@ public class LoginController {
     @RequestMapping(value = {"/loginIn.do"})
     public ModelAndView loginIn(HttpServletRequest request){
         Map<String, Object> map = new HashMap<>();
-        loginService.queryTipsForCore(request);
-
+        Boolean flag = loginService.queryTipsForCore(request);
+        map.put("flag",flag);
         return new ModelAndView("redirect:/home.do",map);
     }
     @RequestMapping(value = {"/logOut.do"})

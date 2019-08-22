@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org" th:with="title='head'">
+<head th:replace="common/head :: common_header(~{::link},~{::script})">
+    <link type="text/css" rel="stylesheet" th:href="@{/web/login/login.css}"/>
+    <script type="text/javascript" th:src="@{/web/login/login.js}"></script>
+</head>
+
+<body style=" background: url('/images/common/index.jpg') no-repeat center center fixed; background-size: 100%;">
+<div class="modal-dialog" style="padding-top: 10%;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title text-center" id="myModalLabel">注册</h4>
+        </div>
+        <div class="modal-body" id = "model-body">
+            <table>
+                <tr>
+                    <td width="20%" align="right"><span>账号：</span></td>
+                    <td width="80%"><input  style="display: inline;" type="text" id="username" class="form-control"placeholder="登录账号" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right"><span align="right">密码：</span></td>
+                    <td width="80%"><input  style="display: inline;"type="password" id="password" class="form-control" placeholder="密码" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right"><span align="right">确认密码：</span></td>
+                    <td width="80%"><input  style="display: inline;"type="password" id="password1" class="form-control" placeholder="确认密码" autocomplete="off"></td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right"><span align="right">账号类型：</span></td>
+                    <td width="80%">
+                        <select  style="display: inline;" class="form-control" id="usertype">
+                            <option value="1">用户</option>
+                            <option value="0">管理员</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right"><span align="right">真实姓名：</span></td>
+                    <td width="80%"><input  style="display: inline;"type="text" id="truename" class="form-control" placeholder="真实姓名" autocomplete="off"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+                <button type="button" class="btn btn-default form-control" onclick="register();">确认注册</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
