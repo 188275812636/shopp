@@ -16,19 +16,12 @@
         });
     }
 </script>
-<div style="background-image: url('/images/common/top.jpg') ;height: 100px; width: 100%; top: 0;left: 0;z-index: -1;">
-    <div align="right">
-        欢迎：<span style="text-align: right" th:text="${#request.getSession().getAttribute('user')}"></span>！！！
-        <span onclick="logout()"><a href="">退出</a></span>
+<div style="background-image: url('/images/common/top.jpg') ;height: 80px; width: 100%; top: 0;left: 0;z-index: -1;">
+    <div>
+        <span style="font-size: 40px;margin-left: 40px;">杨芳超市</span>
+        <span style="float: right;line-height: 80px;">
+            欢迎：<span style="text-align: right" th:text="${#request.getSession().getAttribute('user')}"></span>！！！
+            <span onclick="logout()"><a href="">  退出</a></span>
+        </span>
     </div>
-
-    <table width="100%">
-        <tr>
-            <td width="20%">首页</td>
-            <td width="20%">精品家居</td>
-            <td width="20%">潮流服饰</td>
-            <td width="20%">新鲜水果</td>
-            <td width="20%">数码电子</td>
-        </tr>
-    </table>
 </div>

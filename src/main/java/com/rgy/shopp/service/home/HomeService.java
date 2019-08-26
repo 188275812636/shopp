@@ -21,9 +21,9 @@ public class HomeService {
     public JsonResponse queryGnmk(HttpServletRequest request) {
         JsonResponse jsonResponse = new JsonResponse();
         List<Map<String, Object>> gnmk = this.secondJdbcTemplate.queryForList(
-                "SELECT * FROM gnmk T WHERE T.yxbz='Y'");
+                "SELECT * FROM gn_mk T WHERE T.yxbz='Y'");
         List<Map<String, Object>> gncd = this.secondJdbcTemplate.queryForList(
-                "SELECT * FROM gncd T WHERE T.yxbz='Y'");
+                "SELECT * FROM gn_cd T WHERE T.yxbz='Y'");
         jsonResponse.getRepData().put("gnmk",gnmk);
         jsonResponse.getRepData().put("gncd",gncd);
         return jsonResponse;

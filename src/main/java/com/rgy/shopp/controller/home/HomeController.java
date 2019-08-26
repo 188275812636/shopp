@@ -1,5 +1,8 @@
 package com.rgy.shopp.controller.home;
 
+import com.rgy.shopp.service.home.HomeService;
+import com.rgy.shopp.util.JsonResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,13 +18,20 @@ import java.util.Map;
  */
 @Controller
 public class HomeController {
+
+    @Autowired
+    HomeService homeService;
+
     @RequestMapping(value = {"/home.do"})
     public ModelAndView login(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("home/home");
         Object object = request.getSession().getAttribute("user");
         if(object!=null){
-            Map map = new HashMap();
-            map.put("user",object);
+            JsonResponse jsonResponse = homeService.queryGnmk(request);
+
+            modelAndView.getModelMap().addAttribute("gnmk", jsonResponse.getRepData().get("gnmk"));
+            modelAndView.getModelMap().addAttribute("gncd", jsonResponse.getRepData().get("gncd"));
+
             return modelAndView;
         }
         return new ModelAndView("redirect:/login.do");
