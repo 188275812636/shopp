@@ -2,9 +2,11 @@ package com.rgy.shopp.controller.login;
 
 import com.rgy.shopp.service.login.LoginService;
 import com.rgy.shopp.service.login.RegisterService;
+import com.rgy.shopp.util.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,13 +26,15 @@ public class RegisterController {
 
     @RequestMapping(value = {"/register.do"})
     public ModelAndView register(HttpServletRequest request) {
+
         return new ModelAndView("login/register");
     }
+    @ResponseBody
     @RequestMapping(value = {"/to_register.do"})
-    public ModelAndView to_register(HttpServletRequest request) {
+    public JsonResponse to_register(HttpServletRequest request) {
 
-        registerService.addUser(request);
-        return new ModelAndView("login/login");
+        JsonResponse jsonResponse = registerService.addUser(request);
+        return jsonResponse;
     }
 
 }
