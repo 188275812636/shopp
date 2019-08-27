@@ -25,6 +25,11 @@ public class RegisterService {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     *@描述 新增用户
+     *@user rgy
+     *@date 2019/8/27
+     */
     public JsonResponse addUser(HttpServletRequest request) {
         JsonResponse jsonResponse = new JsonResponse();
         String username = request.getParameter("username");

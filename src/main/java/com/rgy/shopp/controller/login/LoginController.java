@@ -23,6 +23,11 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+    /**
+     *@描述 简单的登录拦截
+     *@user rgy
+     *@date 2019/8/27
+     */
     @RequestMapping(value = {"/", "/login.do"})
     public ModelAndView login(HttpServletRequest request) {
         Object object = request.getSession().getAttribute("user");
@@ -34,16 +39,27 @@ public class LoginController {
         return new ModelAndView("login/login");
     }
 
+    /**
+     *@描述 登录
+     *@user rgy
+     *@date 2019/8/27
+     */
     @ResponseBody
     @RequestMapping(value = {"/loginIn.do"})
     public JsonResponse loginIn(HttpServletRequest request){
         JsonResponse jsonResponse = new JsonResponse();
         Map<String, Object> map = new HashMap<>();
-        Boolean flag = loginService.queryTipsForCore(request);
+        Boolean flag = loginService.queryUser(request);
         map.put("flag",flag);
         jsonResponse.getRepData().put("data",map);
         return jsonResponse;
     }
+
+    /**
+     *@描述 登出
+     *@user rgy
+     *@date 2019/8/27
+     */
     @RequestMapping(value = {"/logOut.do"})
     public ModelAndView logOut(HttpServletRequest request){
         request.getSession().removeAttribute("user");

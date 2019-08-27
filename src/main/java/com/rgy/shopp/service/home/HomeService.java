@@ -18,6 +18,12 @@ import java.util.Map;
 public class HomeService {
     @Autowired
     private JdbcTemplate secondJdbcTemplate;
+
+    /**
+     *@描述 查询功能模块和菜单
+     *@user rgy
+     *@date 2019/8/27
+     */
     public JsonResponse queryGnmk(HttpServletRequest request) {
         JsonResponse jsonResponse = new JsonResponse();
         List<Map<String, Object>> gnmk = this.secondJdbcTemplate.queryForList(

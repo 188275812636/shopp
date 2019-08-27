@@ -24,11 +24,21 @@ public class RegisterController {
     @Autowired
     private RegisterService registerService;
 
+    /**
+     *@描述 注册页面
+     *@user rgy
+     *@date 2019/8/27
+     */
     @RequestMapping(value = {"/register.do"})
     public ModelAndView register(HttpServletRequest request) {
 
         return new ModelAndView("login/register");
     }
+    /**
+     *@描述 注册
+     *@user rgy
+     *@date 2019/8/27
+     */
     @ResponseBody
     @RequestMapping(value = {"/to_register.do"})
     public JsonResponse to_register(HttpServletRequest request) {

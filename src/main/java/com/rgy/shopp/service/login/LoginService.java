@@ -17,13 +17,12 @@ public class LoginService {
     @Autowired
     private JdbcTemplate secondJdbcTemplate;
 
-    public Boolean queryTipsForCore(HttpServletRequest request) {
+    public Boolean queryUser(HttpServletRequest request) {
         List<Map<String, Object>> user = this.secondJdbcTemplate.queryForList(
                 "SELECT * FROM portal_user T WHERE T.USERNAME=? and t.PASSWORD=? and T.USERTYPE=?",
                 request.getParameter("username"),request.getParameter("password"),request.getParameter("usertype"));
         if(user.size()>0){
             request.getSession().setAttribute("user",request.getParameter("username"));//用户名存入该用户的session 中
-            System.out.println("进入首页！");
             return true;
         }else{
             return false;
