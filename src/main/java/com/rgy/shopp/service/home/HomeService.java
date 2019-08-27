@@ -41,8 +41,12 @@ public class HomeService {
      */
     public JsonResponse queryGncdByMkid(HttpServletRequest request) {
         JsonResponse jsonResponse = new JsonResponse();
+        String mkid =  request.getParameter("mkid");
+        if(mkid==null){
+            mkid="1";
+        }
         List<Map<String, Object>> gncd = this.secondJdbcTemplate.queryForList(
-                "SELECT * FROM gn_cd T WHERE T.yxbz='Y' and t.mkid=?",request.getParameter("mkid"));
+                "SELECT * FROM gn_cd T WHERE T.yxbz='Y' and t.mkid=?",mkid);
         jsonResponse.getRepData().put("gncd",gncd);
         return jsonResponse;
     }

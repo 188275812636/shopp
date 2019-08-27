@@ -37,6 +37,7 @@ public class HomeController {
             ModelAndView modelAndView = new ModelAndView("home/home");
             JsonResponse jsonResponse = homeService.queryGnmk(request);
             modelAndView.getModelMap().addAttribute("gnmk", jsonResponse.getRepData().get("gnmk"));
+            jsonResponse = homeService.queryGncdByMkid(request);
             modelAndView.getModelMap().addAttribute("gncd", jsonResponse.getRepData().get("gncd"));
             modelAndView.getModelMap().addAttribute("usertype", "1");
 

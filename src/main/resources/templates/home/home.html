@@ -10,16 +10,22 @@
 </head>
 <div th:replace="common/top"></div>
 <div style="margin-top: 20px">
-    <table width="98%" align="center">
-    <tr>
-        <td name="gnmk" style="text-align: center;font-size: 20px;" th:each="gnmklist,status:${gnmk}">
-            <span th:text="${gnmklist.mkmc}" onclick="tognmk(this)">
-            </span>
-            <input type="hidden" th:value="${gnmklist.id}">
-        </td>
-    </tr>
+        <table width="98%" align="center">
+            <tr>
+                <td name="gnmk" style="text-align: center;font-size: 20px;" th:each="gnmklist,status:${gnmk}">
+                    <form th:action="@{/home.do}" th:method="post">
+                        <span th:text="${gnmklist.mkmc}" onclick="tognmk(this)">
+                        </span>
+                        <input id="mkid" name="mkid" type="hidden" th:value="${gnmklist.id}">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    <table id="gncd_tab" width="20%" style="height: 500px;margin-left: 50px;">
+        <tr name="gnmk" style="text-align: center;font-size: 16px;" th:each="gncdlist,status:${gncd}">
+            <td th:text="${gncdlist.gn_mc}"></td>
+        </tr>
     </table>
-
 </div>
 
 <div th:replace="common/foot"></div>
