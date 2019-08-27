@@ -20,7 +20,7 @@ public class HomeService {
     private JdbcTemplate secondJdbcTemplate;
 
     /**
-     *@描述 查询功能模块和菜单
+     *@描述 查询功能模块
      *@user rgy
      *@date 2019/8/27
      */
@@ -31,6 +31,18 @@ public class HomeService {
         List<Map<String, Object>> gncd = this.secondJdbcTemplate.queryForList(
                 "SELECT * FROM gn_cd T WHERE T.yxbz='Y'");
         jsonResponse.getRepData().put("gnmk",gnmk);
+        return jsonResponse;
+    }
+
+    /**
+     *@描述 查询功能菜单
+     *@user rgy
+     *@date 2019/8/27 10:19
+     */
+    public JsonResponse queryGncdByMkid(HttpServletRequest request) {
+        JsonResponse jsonResponse = new JsonResponse();
+        List<Map<String, Object>> gncd = this.secondJdbcTemplate.queryForList(
+                "SELECT * FROM gn_cd T WHERE T.yxbz='Y' and t.mkid=?",request.getParameter("mkid"));
         jsonResponse.getRepData().put("gncd",gncd);
         return jsonResponse;
     }

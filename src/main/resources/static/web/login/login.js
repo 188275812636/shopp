@@ -24,7 +24,7 @@ function login() {
             toastr.error('链接超时！');
         },
         success: function (responseText, textStatus, XMLHttpRequest) {
-            if(!responseText.repData.data.flag){
+            if(responseText.repData.data.usertypt=="-1"){
                 toastr.info('用户名或密码不正确！');
                 return;
             }

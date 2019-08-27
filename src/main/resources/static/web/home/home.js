@@ -2,11 +2,20 @@ $(function () {
 
 
 });
+function tognmk(obj) {
+    var mkid = $(obj).next().val();
+    $.ajax({
+        url: "/tognmk.do",
+        data: {"mkid": mkid},
+        type: "post",
+        timeout: 3000,
+        dataType: "json",
+        async: false,
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            toastr.error('链接超时！');
+        },
+        success: function (responseText, textStatus, XMLHttpRequest) {
 
-function sss() {
-    var gnmklist =  document.getElementsByName("gnmk");
-    var num = gnmklist.length;
-
-    gnmklist[0].setAttribute('width','20%');
-    gnmklist[0].setAttribute('style', 'width: 20% !important');
+        }
+    });
 }

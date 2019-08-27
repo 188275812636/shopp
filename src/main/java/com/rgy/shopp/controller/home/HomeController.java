@@ -5,6 +5,7 @@ import com.rgy.shopp.util.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,14 +30,34 @@ public class HomeController {
      */
     @RequestMapping(value = {"/home.do"})
     public ModelAndView goHome(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView("home/home");
-        Object object = request.getSession().getAttribute("user");
-        if(object!=null){
+        Object user = request.getSession().getAttribute("user");
+        Object admin = request.getSession().getAttribute("admin");
+
+        if(user!=null){
+            ModelAndView modelAndView = new ModelAndView("home/home");
             JsonResponse jsonResponse = homeService.queryGnmk(request);
             modelAndView.getModelMap().addAttribute("gnmk", jsonResponse.getRepData().get("gnmk"));
             modelAndView.getModelMap().addAttribute("gncd", jsonResponse.getRepData().get("gncd"));
+            modelAndView.getModelMap().addAttribute("usertype", "1");
+
+            return modelAndView;
+        }
+        if(admin!=null){
+            ModelAndView modelAndView = new ModelAndView("admin/home");
+            JsonResponse jsonResponse = homeService.queryGnmk(request);
+            modelAndView.getModelMap().addAttribute("gnmk", jsonResponse.getRepData().get("gnmk"));
+            modelAndView.getModelMap().addAttribute("gncd", jsonResponse.getRepData().get("gncd"));
+            modelAndView.getModelMap().addAttribute("usertype", "0");
             return modelAndView;
         }
         return new ModelAndView("redirect:/login.do");
+    }
+
+    @ResponseBody
+    @RequestMapping(value = {"/tognmk.do"})
+    public JsonResponse tognmk(HttpServletRequest request) {
+        Object object = request.getSession().getAttribute("user");
+        JsonResponse jsonResponse = homeService.queryGncdByMkid(request);
+        return jsonResponse;
     }
 }

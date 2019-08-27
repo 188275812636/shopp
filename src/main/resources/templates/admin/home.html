@@ -10,14 +10,15 @@
 </head>
 <div th:replace="common/top"></div>
 <div style="margin-top: 20px">
+    <button type="button" class="btn btn-info" style="float: right">上架商品</button>
     <table width="98%" align="center">
-    <tr>
-        <td name="gnmk" style="text-align: center;font-size: 20px;" th:each="gnmklist,status:${gnmk}">
+        <tr>
+            <td name="gnmk" style="text-align: center;font-size: 20px;" th:each="gnmklist,status:${gnmk}">
             <span th:text="${gnmklist.mkmc}" onclick="tognmk(this)">
             </span>
-            <input type="hidden" th:value="${gnmklist.id}">
-        </td>
-    </tr>
+                <input type="hidden" th:value="${gnmklist.id}">
+            </td>
+        </tr>
     </table>
 
 </div>

@@ -19,8 +19,12 @@
 <div style="background-image: url('/images/common/top.jpg') ;height: 80px; width: 100%; top: 0;left: 0;z-index: -1;">
     <div>
         <span style="font-size: 40px;margin-left: 40px;line-height: 80px;" onclick="location.reload()">杨芳超市</span>
-        <span style="float: right;line-height: 80px;">
-            欢迎：<span style="text-align: right" th:text="${#request.getSession().getAttribute('user')}"></span>！！！
+        <span th:if="${usertype eq '1'}" style="float: right;line-height: 80px;">
+            欢迎用户：<span style="text-align: right" th:text="${#request.getSession().getAttribute('user')}"></span>！！！
+            <span onclick="logout()"><a href="">  退出</a></span>
+        </span>
+        <span th:if="${usertype eq '0'}" style="float: right;line-height: 80px;">
+            欢迎管理员：<span style="text-align: right" th:text="${#request.getSession().getAttribute('admin')}"></span>！！！
             <span onclick="logout()"><a href="">  退出</a></span>
         </span>
     </div>
