@@ -4,14 +4,12 @@ import com.rgy.shopp.entity.UserEntity;
 import com.rgy.shopp.entity.UserRepository;
 import com.rgy.shopp.util.JsonResponse;
 import com.rgy.shopp.util.UuidUtil;
-import net.sf.cglib.asm.$AnnotationVisitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
+
 
 /**
  * \* User: rgy
