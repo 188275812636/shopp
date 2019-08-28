@@ -9,18 +9,108 @@
     <title>首页</title>
 </head>
 <div th:replace="common/top"></div>
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">上架商品</button>
 <div style="margin-top: 20px">
-    <button type="button" class="btn btn-info" style="float: right">上架商品</button>
     <table width="98%" align="center">
         <tr>
             <td name="gnmk" style="text-align: center;font-size: 20px;" th:each="gnmklist,status:${gnmk}">
-            <span th:text="${gnmklist.mkmc}" onclick="tognmk(this)">
-            </span>
-                <input type="hidden" th:value="${gnmklist.id}">
+                <form th:action="@{/home.do}" th:method="post">
+                        <span th:text="${gnmklist.mkmc}" onclick="tognmk(this)">
+                        </span>
+                    <input id="mkid" name="mkid" type="hidden" th:value="${gnmklist.id}">
+                </form>
             </td>
         </tr>
     </table>
+    <table width="98%">
+        <tr>
+            <td>
+                <table id="gncd_tab" width="20%" style="height: 500px;margin-left: 50px;">
+                    <tr name="gnmk" style="text-align: center;font-size: 16px;" th:each="gncdlist,status:${gncd}">
+                        <td th:text="${gncdlist.gn_mc}" onclick="togncd(this)">
 
+                        </td>
+                        <form th:action="@{/home.do}" th:method="post">
+                            <input id="gnid" name="gnid" type="hidden" th:value="${gncdlist.id}">
+                            <input id="mkid" name="mkid" type="hidden" th:value="${gncdlist.mkid}">
+                        </form>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table id="sp_tab" style="height: 500px;margin-left: 50px;">
+                    <tr>
+                        <td name="gnmk" style="font-size: 16px;" th:each="gncdlist,status:${sp}">
+                            <form th:action="@{/home.do}" th:method="post">
+                                <span th:text="${gncdlist.spmc}" onclick="togncd(this)"></span>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新增商品</h4>
+            </div>
+            <div class="modal-body" >
+                <form th:action="@{/addSp.do}" th:method="post" id="sp_from">
+                    <table>
+                        <tr>
+                            <td width="20%" align="right"><span>商品名称</span></td>
+                            <td width="80%"><input  style="display: inline;" type="text" id="spmc" name="spmc" class="form-control" autocomplete="off"></td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="right"><span align="right">所属模块</span></td>
+                            <td width="80%">
+                                <select class="form-control" id="spmk" name="spmk" title="选择商品模块"
+                                    data-width="300px" onchange="changespmk()">
+                                    <option value="">请选择...</option>
+                                    <option th:each="gnmk,gnmkStat:${gnmk}" th:attr="value=${gnmk.id}">
+                                        <span th:utext="${gnmk.mkmc}"></span>
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="right"><span align="right">详细分类</span></td>
+                            <td width="80%">
+                                <select class="form-control" id="spfl" name="spfl" title="选择商品分类"
+                                        data-width="300px">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="right"><span>商品描述</span></td>
+                            <td width="80%"><textarea  style="display: inline;" id="spms" name="spms" class="form-control" autocomplete="off"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="right"><span>是否选用</span></td>
+                            <td width="80%">
+                                <select class="form-control" id="yxbz" name="yxbz" title="选择商品分类"
+                                        data-width="300px">
+                                    <option value="Y">选用</option>
+                                    <option value="N">停用</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="closeModel" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary" onclick="addsp()">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
 
 <div th:replace="common/foot"></div>

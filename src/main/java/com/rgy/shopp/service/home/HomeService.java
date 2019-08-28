@@ -28,8 +28,6 @@ public class HomeService {
         JsonResponse jsonResponse = new JsonResponse();
         List<Map<String, Object>> gnmk = this.secondJdbcTemplate.queryForList(
                 "SELECT * FROM gn_mk T WHERE T.yxbz='Y'");
-        List<Map<String, Object>> gncd = this.secondJdbcTemplate.queryForList(
-                "SELECT * FROM gn_cd T WHERE T.yxbz='Y'");
         jsonResponse.getRepData().put("gnmk",gnmk);
         return jsonResponse;
     }
@@ -48,6 +46,23 @@ public class HomeService {
         List<Map<String, Object>> gncd = this.secondJdbcTemplate.queryForList(
                 "SELECT * FROM gn_cd T WHERE T.yxbz='Y' and t.mkid=?",mkid);
         jsonResponse.getRepData().put("gncd",gncd);
+        return jsonResponse;
+    }
+
+    /**
+     *@描述 根据分类查询商品
+     *@user rgy
+     *@date 2019/8/28 11:30
+     */
+    public JsonResponse querySpBygnid(HttpServletRequest request) {
+        JsonResponse jsonResponse = new JsonResponse();
+        String gnid =  request.getParameter("gnid");
+        if(gnid==null){
+            gnid="1";
+        }
+        List<Map<String, Object>> sp = this.secondJdbcTemplate.queryForList(
+                "SELECT * FROM sp T WHERE T.yxbz='Y' and t.spfl=?",gnid);
+        jsonResponse.getRepData().put("sp",sp);
         return jsonResponse;
     }
 }

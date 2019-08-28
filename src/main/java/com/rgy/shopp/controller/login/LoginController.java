@@ -67,6 +67,7 @@ public class LoginController {
     @RequestMapping(value = {"/logOut.do"})
     public ModelAndView logOut(HttpServletRequest request){
         request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("admin");
         return new ModelAndView("redirect:/home.do");
     }
 

@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * \* User: rgy
@@ -35,30 +34,38 @@ public class HomeController {
 
         if(user!=null){
             ModelAndView modelAndView = new ModelAndView("home/home");
-            JsonResponse jsonResponse = homeService.queryGnmk(request);
-            modelAndView.getModelMap().addAttribute("gnmk", jsonResponse.getRepData().get("gnmk"));
-            jsonResponse = homeService.queryGncdByMkid(request);
-            modelAndView.getModelMap().addAttribute("gncd", jsonResponse.getRepData().get("gncd"));
-            modelAndView.getModelMap().addAttribute("usertype", "1");
-
+            modelAndView = setGn(modelAndView,request,"1");
             return modelAndView;
         }
         if(admin!=null){
             ModelAndView modelAndView = new ModelAndView("admin/home");
-            JsonResponse jsonResponse = homeService.queryGnmk(request);
-            modelAndView.getModelMap().addAttribute("gnmk", jsonResponse.getRepData().get("gnmk"));
-            modelAndView.getModelMap().addAttribute("gncd", jsonResponse.getRepData().get("gncd"));
-            modelAndView.getModelMap().addAttribute("usertype", "0");
+            modelAndView = setGn(modelAndView,request,"0");
             return modelAndView;
         }
         return new ModelAndView("redirect:/login.do");
     }
 
+    /**
+     *@描述 根据模块查询商品分类
+     *@user rgy
+     *@date 2019/8/28 9:37
+     */
     @ResponseBody
     @RequestMapping(value = {"/tognmk.do"})
     public JsonResponse tognmk(HttpServletRequest request) {
-        Object object = request.getSession().getAttribute("user");
         JsonResponse jsonResponse = homeService.queryGncdByMkid(request);
         return jsonResponse;
+    }
+
+    public ModelAndView setGn(ModelAndView modelAndView,HttpServletRequest request,String usertype){
+        JsonResponse jsonResponse = homeService.queryGnmk(request);
+        modelAndView.getModelMap().addAttribute("gnmk", jsonResponse.getRepData().get("gnmk"));
+        jsonResponse = homeService.queryGncdByMkid(request);
+        modelAndView.getModelMap().addAttribute("gncd", jsonResponse.getRepData().get("gncd"));
+        jsonResponse = homeService.querySpBygnid(request);
+        modelAndView.getModelMap().addAttribute("sp", jsonResponse.getRepData().get("sp"));
+
+        modelAndView.getModelMap().addAttribute("usertype", usertype);
+        return modelAndView;
     }
 }
