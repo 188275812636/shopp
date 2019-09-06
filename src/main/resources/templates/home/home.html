@@ -13,7 +13,7 @@
         <table width="98%" align="center">
             <tr>
                 <td name="gnmk" style="text-align: center;font-size: 20px;" th:each="gnmklist,status:${gnmk}">
-                    <form th:action="@{/home.do}" th:method="post">
+                    <form th:"@{/home.do}" th:method="post">
                         <span th:text="${gnmklist.mkmc}" onclick="tognmk(this)">
                         </span>
                         <input id="mkid" name="mkid" type="hidden" th:value="${gnmklist.id}">

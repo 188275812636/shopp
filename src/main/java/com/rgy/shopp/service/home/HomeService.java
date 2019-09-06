@@ -50,7 +50,7 @@ public class HomeService {
     }
 
     /**
-     *@描述 根据分类查询商品
+     *@描述 根据分类查询物品
      *@user rgy
      *@date 2019/8/28 11:30
      */

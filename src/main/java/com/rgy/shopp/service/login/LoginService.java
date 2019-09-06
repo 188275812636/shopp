@@ -27,6 +27,7 @@ public class LoginService {
             //管理员
             if("0".equals(usertype)){
                 request.getSession().setAttribute("admin",request.getParameter("username"));//用户名存入该用户的session 中
+
             }
             if("1".equals(usertype)){
                 request.getSession().setAttribute("user",request.getParameter("username"));//用户名存入该用户的session 中
